@@ -37,3 +37,4 @@ Clone `guiders-ui-platform` as sibling of `agent-forge` under `open/`. `AgentFor
 
 - [GUIDERS-UI-0001 — monorepo bootstrap](docs/adr/GUIDERS-UI-0001-monorepo-bootstrap.md)
 - [GUIDERS-UI-0002 — v1 extraction slice](docs/adr/GUIDERS-UI-0002-v1-extraction-slice.md)
+- [GUIDERS-UI-0003 — Agent AX and human a11y](docs/adr/GUIDERS-UI-0003-agent-ax-and-human-a11y.md)
