@@ -15,10 +15,11 @@
 | **Repository name** | `guiders-ui-platform` |
 | **Workflow filename** | `release.yml` |
 | **Environment name** | *(пусто)* |
+| **Glob pattern(s)** | `AIGuiders.UI.*` |
 
 5. **Save**.
 
-Одна политика покрывает **все** пакеты из [`.github/workflows/release.yml`](../.github/workflows/release.yml):
+Одна политика покрывает пакеты, чьи **PackageId** матчат glob (и workflow ниже).
 
 | PackageId | Версия (v0.1.0) |
 |-----------|-----------------|
@@ -26,7 +27,7 @@
 | `AIGuiders.UI.Tokens` | `0.1.0` |
 | `AIGuiders.UI.Web.HTMX` | `0.1.0` |
 
-**Package scope (glob):** `AIGuiders.UI.*` — отдельный glob на nuget.org **не** задаётся; фильтр в workflow: `artifacts/AIGuiders.UI.*.nupkg`.
+Workflow дополнительно пушит только `artifacts/AIGuiders.UI.*.nupkg` — defense in depth.
 
 ### Соседние политики (не удалять)
 

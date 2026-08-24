@@ -37,7 +37,7 @@ dotnet pack -c Release
 | Owner | `AI-Guiders` |
 | Repository | `guiders-ui-platform` |
 | Workflow | `release.yml` |
-| **Package scope (glob)** | **`AIGuiders.UI.*`** |
+| **Glob pattern** | **`AIGuiders.UI.*`** |
 | Environment | *(пусто)* |
 | NuGet user | `LonelySoul` |
 
