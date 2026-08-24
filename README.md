@@ -27,7 +27,22 @@ docs/adr/     # UI platform ADRs
 ```bash
 dotnet build
 dotnet test
+dotnet pack -c Release
 ```
+
+## NuGet Trusted Publishing (nuget.org)
+
+| Поле | Значение |
+|------|----------|
+| Owner | `AI-Guiders` |
+| Repository | `guiders-ui-platform` |
+| Workflow | `release.yml` |
+| **Package scope (glob)** | **`AIGuiders.UI.*`** |
+| Environment | *(пусто)* |
+| NuGet user | `LonelySoul` |
+
+Полная инструкция: [docs/nuget-publishing.md](docs/nuget-publishing.md).  
+Триггер: тег `v*` (первый релиз: `v0.1.0` после сохранения TP на nuget.org).
 
 ## Local dev (agent-forge)
 
