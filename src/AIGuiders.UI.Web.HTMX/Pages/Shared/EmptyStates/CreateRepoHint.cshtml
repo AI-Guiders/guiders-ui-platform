@@ -1,0 +1,13 @@
+@model CreateRepoHintModel
+<div class="page-actions empty-catalog-hint">
+    <p class="meta">
+        @if (string.IsNullOrWhiteSpace(Model.Message))
+        {
+            <text>No repositories yet. Press <code>Ctrl+K</code> and run <code>/repo create</code> — or ask your forge admin to create the pilot repo.</text>
+        }
+        else
+        {
+            @Model.Message
+        }
+    </p>
+</div>

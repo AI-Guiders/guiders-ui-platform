@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/AIGuiders.UI.Core/AIGuiders.UI.Core.csproj" />
+    <Project Path="src/AIGuiders.UI.Tokens/AIGuiders.UI.Tokens.csproj" />
+    <Project Path="src/AIGuiders.UI.Web.HTMX/AIGuiders.UI.Web.HTMX.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/AIGuiders.UI.Tests/AIGuiders.UI.Tests.csproj" />
+  </Folder>
+</Solution>

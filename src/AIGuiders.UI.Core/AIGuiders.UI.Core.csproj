@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>AIGuiders.UI.Core</RootNamespace>
+    <AssemblyName>AIGuiders.UI.Core</AssemblyName>
+    <PackageId>AIGuiders.UI.Core</PackageId>
+    <Description>Cross-product human+agent UI view contracts (page chrome, empty states, navigation).</Description>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,23 @@
+@model IReadOnlyList<HumanUiBreadcrumb>
+@if (Model is { Count: > 0 })
+{
+    <p class="meta human-breadcrumb">
+        @for (var i = 0; i < Model.Count; i++)
+        {
+            if (i > 0)
+            {
+                <text> · </text>
+            }
+
+            var crumb = Model[i];
+            if (string.IsNullOrWhiteSpace(crumb.Href))
+            {
+                @crumb.Label
+            }
+            else
+            {
+                <a href="@crumb.Href">@crumb.Label</a>
+            }
+        }
+    </p>
+}

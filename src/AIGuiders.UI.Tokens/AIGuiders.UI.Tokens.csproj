@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>AIGuiders.UI.Tokens</RootNamespace>
+    <AssemblyName>AIGuiders.UI.Tokens</AssemblyName>
+    <PackageId>AIGuiders.UI.Tokens</PackageId>
+    <Description>Design tokens and base human-surface CSS variables for AIGuiders UI adapters.</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="wwwroot\**" Pack="true" PackagePath="content\wwwroot\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

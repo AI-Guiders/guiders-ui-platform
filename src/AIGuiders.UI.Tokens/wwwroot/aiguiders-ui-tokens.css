@@ -1,0 +1,34 @@
+/* AIGuiders.UI.Tokens — shared human-surface variables (adapter-agnostic) */
+:root {
+  color-scheme: dark;
+  --ui-bg: #0b0e13;
+  --ui-surface: #12161d;
+  --ui-surface-2: #1a2029;
+  --ui-surface-3: #212833;
+  --ui-text: #e8edf5;
+  --ui-text-muted: #8b949e;
+  --ui-border: #2d3542;
+  --ui-border-subtle: #232a35;
+  --ui-link: #58a6ff;
+  --ui-link-hover: #79b8ff;
+  --ui-accent: #4493f8;
+  --ui-accent-fg: #ffffff;
+  --ui-code-bg: #0d1117;
+  --ui-error: #f85149;
+  --ui-success: #3fb950;
+  --ui-radius: 8px;
+  --ui-radius-sm: 6px;
+  --ui-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* Chrome + empty-state hooks (consumers may extend) */
+.page-hero-logo { margin: 0 0 1.25rem; }
+.section-heading-home { margin: 0 0 0.75rem; }
+.empty-state-card {
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--ui-border-subtle, #232a35);
+  border-radius: var(--ui-radius, 8px);
+  background: var(--ui-surface, #12161d);
+}
+.human-breadcrumb { margin: 0.25rem 0 1rem; }
+.intro.muted, p.meta { color: var(--ui-text-muted, #8b949e); }
