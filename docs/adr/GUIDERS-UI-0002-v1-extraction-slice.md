@@ -26,4 +26,4 @@
 - [x] Forge references sibling packages
 - [x] Journey tests pass (home chrome not escaped)
 - [x] `release.yml` + [docs/nuget-publishing.md](../nuget-publishing.md) (TP parameters)
-- [ ] NuGet Trusted Publishing policy saved on nuget.org + tag `v0.1.0` pushed
+- [x] NuGet Trusted Publishing policy saved on nuget.org + tag `v0.1.0` pushed (`release` workflow green, 2026-08-25)
