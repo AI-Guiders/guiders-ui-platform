@@ -2,7 +2,7 @@
 
 **Status:** accepted (draft charter — 2026-08-25)  
 **Tags:** #guiders #ui #a11y #ax #standard #federation #open  
-**Related:** GUIDERS-UI-0001 · GUIDERS-UI-0003 · GUIDERS-ADR-0006 · ANUI-ADR-0004 (evolution)
+**Related:** GUIDERS-UI-0001 · GUIDERS-UI-0003 · GUIDERS-ADR-0006 · GUIDERS-ADR-0007 · ANUI-ADR-0004 (evolution)
 
 ---
 
@@ -20,6 +20,8 @@ Today:
 Operator goal: not another UI kit, but a **standard platforms can adopt** — React, Vue, Angular, Razor, Qt, native mobile — with conformance, not goodwill README claims.
 
 Federation charter (GUIDERS-ADR-0006): sovereign planets, shared protocols, no annexation.
+
+Aviation mental model (GUIDERS-ADR-0007): ASP = **UI contour symbology** (Phase 1); Surface = Phase 4; EICAS = drift; Correspondence = briefing — sibling canon contour.
 
 ---
 
