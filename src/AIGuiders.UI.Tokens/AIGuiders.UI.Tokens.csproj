@@ -7,5 +7,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="wwwroot\**" Pack="true" PackagePath="content\wwwroot\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <EmbeddedResource Include="wwwroot\aiguiders-ui-tokens.css" LogicalName="AIGuiders.UI.Tokens.wwwroot.aiguiders-ui-tokens.css" />
   </ItemGroup>
 </Project>

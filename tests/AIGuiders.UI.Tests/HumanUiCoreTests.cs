@@ -1,5 +1,6 @@
 using AIGuiders.UI.Core.Editors;
 using AIGuiders.UI.Core.PageChrome;
+using AIGuiders.UI.Tokens;
 using AIGuiders.UI.Web.HTMX;
 using Xunit;
 
@@ -28,5 +29,12 @@ public sealed class HumanUiCoreTests
     {
         var ids = EditorFormatToolbarDefaults.MarkdownGhLike.Select(b => b.Id).ToList();
         Assert.Equal(["h2", "bold", "italic", "quote", "code", "link", "bul", "num"], ids);
+    }
+
+    [Fact]
+    public void Tokens_css_includes_editor_kit_rules()
+    {
+        Assert.Contains(".editor-ccl-host", HumanUiTokensCss.Content, StringComparison.Ordinal);
+        Assert.Contains(".editor-format-toolbar", HumanUiTokensCss.Content, StringComparison.Ordinal);
     }
 }
