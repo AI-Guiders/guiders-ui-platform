@@ -1,0 +1,16 @@
+@model EditorFormatToolbarModel
+@if (Model.Buttons is { Count: > 0 })
+{
+    <div class="editor-format-toolbar" data-forge-editor-toolbar data-testid="@Model.TestId"@if (!string.IsNullOrWhiteSpace(Model.TargetTextareaId)) { <text> data-forge-editor-target="@Model.TargetTextareaId"</text> }>
+        @foreach (var btn in Model.Buttons)
+        {
+            <button type="button" class="editor-format-btn" data-forge-format-id="@btn.Id" data-testid="forge-editor-format-@btn.Id" title="@btn.Label" aria-label="@btn.Label">
+                <span class="editor-format-symbol">@btn.Symbol</span>
+            </button>
+            @if (btn.DividerAfter)
+            {
+                <span class="editor-format-divider" aria-hidden="true"></span>
+            }
+        }
+    </div>
+}

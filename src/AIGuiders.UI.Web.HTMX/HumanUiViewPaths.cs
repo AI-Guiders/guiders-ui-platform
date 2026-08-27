@@ -20,4 +20,9 @@ public static class HumanUiViewPaths
         public const string HomeCatalog = "/Pages/Shared/EmptyStates/HomeCatalog";
         public const string CreateRepoHint = "/Pages/Shared/EmptyStates/CreateRepoHint";
     }
+
+    public static class Editors
+    {
+        public const string FormatToolbar = "/Pages/Shared/Editors/FormatToolbar";
+    }
 }

@@ -1,3 +1,4 @@
+using AIGuiders.UI.Core.Editors;
 using AIGuiders.UI.Core.PageChrome;
 using AIGuiders.UI.Web.HTMX;
 using Xunit;
@@ -19,5 +20,13 @@ public sealed class HumanUiCoreTests
         Assert.Equal("/Pages/Shared/PageChrome/Title", HumanUiViewPaths.PageChrome.Title);
         Assert.Equal("/Pages/Shared/PageChrome/MetaLinks", HumanUiViewPaths.PageChrome.MetaLinks);
         Assert.Equal("/Pages/Shared/EmptyStates/Message", HumanUiViewPaths.EmptyStates.Message);
+        Assert.Equal("/Pages/Shared/Editors/FormatToolbar", HumanUiViewPaths.Editors.FormatToolbar);
+    }
+
+    [Fact]
+    public void Editor_format_toolbar_defaults_match_slash_ids()
+    {
+        var ids = EditorFormatToolbarDefaults.MarkdownGhLike.Select(b => b.Id).ToList();
+        Assert.Equal(["h2", "bold", "italic", "quote", "code", "link", "bul", "num"], ids);
     }
 }
