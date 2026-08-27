@@ -166,19 +166,22 @@
   background: var(--ui-surface-2, #1a2029);
   color: var(--ui-text-muted, #8b949e);
   font-family: ui-monospace, monospace;
-  font-size: 0.82rem;
+  font-size: 0.86rem;
   line-height: 1.45;
-  text-align: right;
   user-select: none;
   min-width: 2.2rem;
+  box-sizing: border-box;
+}
+.editor-line-gutter-line {
+  line-height: 1.45;
+  min-height: 1.45em;
+  text-align: right;
 }
 .editor-line-stack .forge-editor-compose textarea.forge-editor,
 .editor-line-stack textarea.forge-editor {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-}
-.editor-line-stack .editor-line-gutter + .forge-editor-compose .editor-format-toolbar {
-  border-top-left-radius: 0;
+  line-height: 1.45;
 }
 .editor-source-stack {
   position: relative;
