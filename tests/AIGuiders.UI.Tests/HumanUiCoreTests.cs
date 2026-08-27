@@ -36,5 +36,7 @@ public sealed class HumanUiCoreTests
     {
         Assert.Contains(".editor-ccl-host", HumanUiTokensCss.Content, StringComparison.Ordinal);
         Assert.Contains(".editor-format-toolbar", HumanUiTokensCss.Content, StringComparison.Ordinal);
+        Assert.Contains(".btn-ghost", HumanUiTokensCss.Content, StringComparison.Ordinal);
+        Assert.Contains(".btn-primary", HumanUiTokensCss.Content, StringComparison.Ordinal);
     }
 }

@@ -46,6 +46,52 @@
   font-weight: 500;
 }
 
+/* Human UI kit — action buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.3125rem 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.25;
+  border-radius: var(--ui-radius-sm, 6px);
+  border: 1px solid var(--ui-border-subtle, #232a35);
+  background: var(--ui-surface-2, #1a2029);
+  color: var(--ui-text, #e8edf5);
+  text-decoration: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+.btn:hover { background: var(--ui-surface-3, #212833); }
+.btn:focus-visible {
+  outline: 2px solid var(--ui-accent, #4493f8);
+  outline-offset: 1px;
+}
+.btn-primary,
+.btn.btn-primary,
+.btn.primary {
+  background: var(--ui-accent, #4493f8);
+  border-color: color-mix(in srgb, var(--ui-accent, #4493f8) 85%, var(--ui-border, #2d3542));
+  color: var(--ui-accent-fg, #ffffff);
+}
+.btn-primary:hover,
+.btn.btn-primary:hover,
+.btn.primary:hover { filter: brightness(1.06); }
+.btn-ghost,
+.btn.btn-ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--ui-link, #58a6ff);
+  padding: 0.3125rem 0.5rem;
+}
+.btn-ghost:hover,
+.btn.btn-ghost:hover {
+  background: var(--ui-surface-2, #1a2029);
+  color: var(--ui-link-hover, #79b8ff);
+}
+
 /* Markdown editor format toolbar (Human UI kit) */
 .editor-format-toolbar {
   display: flex;
