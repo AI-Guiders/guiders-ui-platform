@@ -1,3 +1,4 @@
+@using AIGuiders.UI.Web.HTMX.Components
 @model EditorFormatToolbarModel
 @if (Model.Buttons is { Count: > 0 })
 {
@@ -5,7 +6,14 @@
         @foreach (var btn in Model.Buttons)
         {
             <button type="button" class="editor-format-btn" data-forge-format-id="@btn.Id" data-testid="forge-editor-format-@btn.Id" title="@btn.Label" aria-label="@btn.Label">
-                <span class="editor-format-symbol">@btn.Symbol</span>
+                @if (!string.IsNullOrWhiteSpace(btn.Icon))
+                {
+                    @Html.Raw(HumanUiEditors.RenderFormatIcon(btn.Icon))
+                }
+                else if (!string.IsNullOrWhiteSpace(btn.Symbol))
+                {
+                    <span class="editor-format-symbol">@btn.Symbol</span>
+                }
             </button>
             @if (btn.DividerAfter)
             {

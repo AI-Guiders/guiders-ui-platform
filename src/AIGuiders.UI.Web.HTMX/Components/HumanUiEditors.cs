@@ -17,6 +17,9 @@ public static class HumanUiEditors
             buttons ?? EditorFormatToolbarDefaults.MarkdownGhLike,
             TargetTextareaId: textareaId));
 
+    public static string RenderFormatIcon(string iconId) =>
+        HumanUiRazorBridgeHolder.RenderPartialStatic(HumanUiViewPaths.Editors.FormatIcon, iconId);
+
     public static string RenderCcl(EditorCclModel? model = null) =>
         HumanUiRazorBridgeHolder.RenderPartialStatic(
             HumanUiViewPaths.Editors.Ccl,

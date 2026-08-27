@@ -87,6 +87,19 @@
   font-family: ui-sans-serif, system-ui, sans-serif;
   letter-spacing: -0.02em;
 }
+.editor-format-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  line-height: 0;
+}
+.editor-format-icon svg {
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+}
 .editor-format-divider {
   width: 1px;
   height: 1.1rem;

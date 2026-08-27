@@ -28,7 +28,7 @@ public sealed class HumanUiCoreTests
     public void Editor_format_toolbar_defaults_match_slash_ids()
     {
         var ids = EditorFormatToolbarDefaults.MarkdownGhLike.Select(b => b.Id).ToList();
-        Assert.Equal(["h2", "bold", "italic", "quote", "code", "link", "bul", "num"], ids);
+        Assert.Equal(["h1", "h2", "bold", "italic", "quote", "code", "link", "bul", "num"], ids);
     }
 
     [Fact]

@@ -4,7 +4,8 @@ namespace AIGuiders.UI.Core.Editors;
 public sealed record EditorFormatToolbarButtonModel(
     string Id,
     string Label,
-    string Symbol,
+    string? Icon = null,
+    string? Symbol = null,
     bool DividerAfter = false);
 
 /// <summary>Markdown format toolbar above a composer textarea (Human UI kit).</summary>
@@ -18,14 +19,15 @@ public static class EditorFormatToolbarDefaults
     /// <summary>GH New Issue toolbar subset — ids align with ViewShell <c>formatCatalog</c>.</summary>
     public static IReadOnlyList<EditorFormatToolbarButtonModel> MarkdownGhLike { get; } = new[]
     {
-        new EditorFormatToolbarButtonModel("h2", "Heading", "H", DividerAfter: true),
-        new EditorFormatToolbarButtonModel("bold", "Bold", "B"),
-        new EditorFormatToolbarButtonModel("italic", "Italic", "I", DividerAfter: true),
-        new EditorFormatToolbarButtonModel("quote", "Quote", "“"),
-        new EditorFormatToolbarButtonModel("code", "Code", "<>"),
-        new EditorFormatToolbarButtonModel("link", "Link", "[]", DividerAfter: true),
-        new EditorFormatToolbarButtonModel("bul", "Bullet list", "•"),
-        new EditorFormatToolbarButtonModel("num", "Numbered list", "1."),
+        new EditorFormatToolbarButtonModel("h1", "Heading 1", Icon: "h1"),
+        new EditorFormatToolbarButtonModel("h2", "Heading 2", Icon: "h2", DividerAfter: true),
+        new EditorFormatToolbarButtonModel("bold", "Bold", Icon: "bold"),
+        new EditorFormatToolbarButtonModel("italic", "Italic", Icon: "italic", DividerAfter: true),
+        new EditorFormatToolbarButtonModel("quote", "Quote", Icon: "quote"),
+        new EditorFormatToolbarButtonModel("code", "Code", Icon: "code"),
+        new EditorFormatToolbarButtonModel("link", "Link", Icon: "link", DividerAfter: true),
+        new EditorFormatToolbarButtonModel("bul", "Bullet list", Icon: "bul"),
+        new EditorFormatToolbarButtonModel("num", "Numbered list", Icon: "num"),
     };
 }
 
