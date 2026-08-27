@@ -11,6 +11,7 @@ public static class HumanUiViewPaths
         public const string Section = "/Pages/Shared/PageChrome/Section";
         public const string SectionHome = "/Pages/Shared/PageChrome/SectionHome";
         public const string Breadcrumbs = "/Pages/Shared/PageChrome/Breadcrumbs";
+        public const string MetaLinks = "/Pages/Shared/PageChrome/MetaLinks";
     }
 
     public static class EmptyStates

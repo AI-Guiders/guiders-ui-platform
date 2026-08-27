@@ -1,0 +1,35 @@
+@model PageChromeMetaLinksModel
+@{
+    var hasLinks = Model.Links is { Count: > 0 };
+    var hasPrefix = !string.IsNullOrWhiteSpace(Model.Prefix);
+}
+@if (hasLinks || hasPrefix)
+{
+    var rowClass = string.IsNullOrWhiteSpace(Model.CssClass) ? "meta meta-links" : $"{Model.CssClass} meta-links";
+    <p class="@rowClass"@if (!string.IsNullOrWhiteSpace(Model.TestId)) { <text> data-testid="@Model.TestId"</text> }>
+        @if (hasPrefix)
+        {
+            @Model.Prefix
+        }
+        @if (hasLinks)
+        {
+            @for (var i = 0; i < Model.Links.Count; i++)
+            {
+                var link = Model.Links[i];
+                if (i > 0 || hasPrefix)
+                {
+                    <span class="sep">·</span>
+                }
+                var linkClass = link.Active ? "meta-link active" : "meta-link";
+                if (link.OpenInNewTab)
+                {
+                    <a href="@link.Href" class="@linkClass" target="_blank" rel="noopener noreferrer">@link.Label</a>
+                }
+                else
+                {
+                    <a href="@link.Href" class="@linkClass">@link.Label</a>
+                }
+            }
+        }
+    </p>
+}

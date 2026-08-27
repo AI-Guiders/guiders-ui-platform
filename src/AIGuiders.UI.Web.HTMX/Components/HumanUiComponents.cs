@@ -35,6 +35,11 @@ public static class HumanUiPageChrome
         HumanUiRazorBridgeHolder.RenderPartialStatic(
             HumanUiViewPaths.PageChrome.SectionHome,
             new PageChromeSectionHomeModel(title));
+
+    public static string RenderMetaLinks(PageChromeMetaLinksModel model) =>
+        HumanUiRazorBridgeHolder.RenderPartialStatic(
+            HumanUiViewPaths.PageChrome.MetaLinks,
+            model);
 }
 
 public static class HumanUiEmptyStates

@@ -17,6 +17,7 @@ public sealed class HumanUiCoreTests
     public void View_paths_are_stable()
     {
         Assert.Equal("/Pages/Shared/PageChrome/Title", HumanUiViewPaths.PageChrome.Title);
+        Assert.Equal("/Pages/Shared/PageChrome/MetaLinks", HumanUiViewPaths.PageChrome.MetaLinks);
         Assert.Equal("/Pages/Shared/EmptyStates/Message", HumanUiViewPaths.EmptyStates.Message);
     }
 }
