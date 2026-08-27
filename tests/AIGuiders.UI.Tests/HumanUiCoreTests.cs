@@ -38,5 +38,7 @@ public sealed class HumanUiCoreTests
         Assert.Contains(".editor-format-toolbar", HumanUiTokensCss.Content, StringComparison.Ordinal);
         Assert.Contains(".btn-ghost", HumanUiTokensCss.Content, StringComparison.Ordinal);
         Assert.Contains(".btn-primary", HumanUiTokensCss.Content, StringComparison.Ordinal);
+        Assert.Contains(".human-form-input", HumanUiTokensCss.Content, StringComparison.Ordinal);
+        Assert.Contains(".human-breadcrumb-nav", HumanUiTokensCss.Content, StringComparison.Ordinal);
     }
 }

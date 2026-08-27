@@ -30,7 +30,25 @@
   border-radius: var(--ui-radius, 8px);
   background: var(--ui-surface, #12161d);
 }
-.human-breadcrumb { margin: 0.25rem 0 1rem; }
+.human-breadcrumb-nav { margin: 0.25rem 0 1rem; }
+.human-breadcrumb-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+}
+.human-breadcrumb-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+}
+.human-breadcrumb-item.is-current span {
+  color: var(--ui-text, #e8edf5);
+  font-weight: 500;
+}
 .intro.muted, p.meta { color: var(--ui-text-muted, #8b949e); }
 .meta-links .sep { margin: 0 0.35rem; color: var(--ui-text-muted, #8b949e); }
 .meta-links a.meta-link {
@@ -231,4 +249,95 @@
 }
 .editor-source-stack {
   position: relative;
+}
+
+/* Human form kit — settings / admin fields */
+.human-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 40rem;
+}
+.human-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.human-form-label {
+  font-size: 0.875rem;
+  font-weight: 650;
+  color: var(--ui-text, #e8edf5);
+}
+.human-form-hint {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--ui-text-muted, #8b949e);
+  line-height: 1.4;
+}
+.human-form-input,
+.human-form-select {
+  width: 100%;
+  max-width: 32rem;
+  padding: 0.5rem 0.65rem;
+  font-size: 0.875rem;
+  line-height: 1.35;
+  border: 1px solid var(--ui-border, #2d3542);
+  border-radius: var(--ui-radius-sm, 6px);
+  background: var(--ui-code-bg, #0d1117);
+  color: var(--ui-text, #e8edf5);
+  font-family: inherit;
+}
+.human-form-select {
+  padding-right: 1.75rem;
+  cursor: pointer;
+}
+.human-form-input:focus,
+.human-form-select:focus {
+  outline: 2px solid var(--ui-accent, #4493f8);
+  outline-offset: 1px;
+}
+.human-form-check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+.human-form-check input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--ui-accent, #4493f8);
+}
+.human-form-actions {
+  margin-top: 0.25rem;
+}
+.human-form-footnote {
+  margin: 0.75rem 0 0;
+  font-size: 0.8125rem;
+  color: var(--ui-text-muted, #8b949e);
+  max-width: 40rem;
+}
+.human-form-fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.human-form-legend {
+  font-size: 0.9375rem;
+  font-weight: 650;
+  color: var(--ui-text, #e8edf5);
+  padding: 0;
+  margin: 0 0 0.35rem;
+}
+.human-settings-form .radio-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.15rem 0.5rem;
+  margin: 0.45rem 0;
+  align-items: start;
+  font-size: 0.875rem;
+}
+.human-settings-form .radio-hint {
+  grid-column: 2;
+  font-size: 0.8125rem;
+  color: var(--ui-text-muted, #8b949e);
 }

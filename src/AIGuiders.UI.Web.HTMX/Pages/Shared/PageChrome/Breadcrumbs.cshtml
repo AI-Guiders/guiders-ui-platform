@@ -1,23 +1,34 @@
 @model IReadOnlyList<HumanUiBreadcrumb>
 @if (Model is { Count: > 0 })
 {
-    <p class="meta human-breadcrumb">
-        @for (var i = 0; i < Model.Count; i++)
-        {
-            if (i > 0)
+    <nav class="human-breadcrumb-nav" aria-label="Breadcrumb">
+        <ol class="meta meta-links human-breadcrumb-list">
+            @for (var i = 0; i < Model.Count; i++)
             {
-                <text> · </text>
+                var crumb = Model[i];
+                var isLast = i == Model.Count - 1;
+                <li class="human-breadcrumb-item@(isLast ? " is-current" : null)">
+                    @if (i > 0)
+                    {
+                        <span class="sep" aria-hidden="true">/</span>
+                    }
+                    @if (string.IsNullOrWhiteSpace(crumb.Href) || isLast)
+                    {
+                        if (isLast)
+                        {
+                            <span aria-current="page">@crumb.Label</span>
+                        }
+                        else
+                        {
+                            <span>@crumb.Label</span>
+                        }
+                    }
+                    else
+                    {
+                        <a href="@crumb.Href" class="meta-link">@crumb.Label</a>
+                    }
+                </li>
             }
-
-            var crumb = Model[i];
-            if (string.IsNullOrWhiteSpace(crumb.Href))
-            {
-                @crumb.Label
-            }
-            else
-            {
-                <a href="@crumb.Href">@crumb.Label</a>
-            }
-        }
-    </p>
+        </ol>
+    </nav>
 }
