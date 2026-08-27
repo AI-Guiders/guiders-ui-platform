@@ -54,3 +54,4 @@ Clone `guiders-ui-platform` as sibling of `agent-forge` under `open/`. `AgentFor
 - [GUIDERS-UI-0002 — v1 extraction slice](docs/adr/GUIDERS-UI-0002-v1-extraction-slice.md)
 - [GUIDERS-UI-0003 — Agent AX and human a11y](docs/adr/GUIDERS-UI-0003-agent-ax-and-human-a11y.md)
 - [GUIDERS-UI-0004 — Accessibility Surface Protocol (ASP)](docs/adr/GUIDERS-UI-0004-accessibility-surface-protocol.md)
+- [GUIDERS-UI-0005 — UI adapter strategy (MPA, Blazor, SPA, native)](docs/adr/GUIDERS-UI-0005-ui-adapter-strategy.md)
