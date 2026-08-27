@@ -15,7 +15,7 @@ AI Guiders ships **agent + human** surfaces across carriers:
 | `agent-forge` | Human View MPA (`/view/*`) | browser + MCP |
 | `agent-nuget-pm` | `Anpm.View` (standalone or Forge mount) | browser + MCP |
 | `dash-spec` | Blazor Server dashboards | browser |
-| `cascade-ide` | native IDE (Avalonia) | human + CDP agents |
+| `cascade-ide` | native IDE — **WPF Glass** (`CDP.GlassCockpit.Windows`); Avalonia CIDE **EOL** (legacy SSOT during port) | human + CDP agents |
 | JS ecosystems (partners, future) | React / Vue / Angular apps | browser + their agent layer |
 
 GUIDERS-UI-0001/0003 established:
@@ -41,7 +41,7 @@ AIGuiders.UI.Tokens        — design tokens (CSS variables; npm mirror later)
         ├── UI.Web.HTMX     — Razor MPA / SSR (shipped v0.1)
         ├── UI.Web.Blazor   — Blazor Server / WASM adapter (planned)
         ├── @aiguiders/ui-* — React / Vue adapters (planned; types + components)
-        └── (future)        — Qt / Avalonia profile, terminal+TTS, …
+        └── (future)        — WPF profile (UIA), Qt, … · terminal+TTS
 ```
 
 **Products consume Core (+ Tokens).** They pick **one primary adapter** per human surface. Domain composites (Forge diff, dash-spec charts) stay on the planet.
@@ -53,7 +53,7 @@ AIGuiders.UI.Tokens        — design tokens (CSS variables; npm mirror later)
 | **Web.HTMX** (MPA) | HTTP + SSR; full page or partial refresh | forms, links, keyboard chrome | MCP + journey tests + AX ids / future `describe_surface` | Forge Human View, ANPM.View |
 | **Web.Blazor** | server circuit or WASM; component tree on wire | rich in-page state, filters, drag | same AX contract; Blazor component refs map to ASP nodes | dash-spec Host |
 | **SPA** (React/Vue/…) | client bundle; API/SSR optional | highly interactive, third-party component libs | `@aiguiders/ui-ax` + native selectors; no .NET scrape | partner JS stacks |
-| **Native IDE** | OS windowing (Avalonia, Qt, …) | cockpit density, low latency | CDP / platform MCP; UIA/Qt accessibility profile | cascade-ide |
+| **Native IDE** | OS windowing (WPF primary on Windows; Qt/Linux later) | cockpit density, low latency | CDP / platform MCP; UIA accessibility profile | cascade-ide **Glass** (Avalonia CIDE EOL) |
 
 Adapters are **siblings**, not layers. React does not wrap Razor. Blazor does not require HTMX.
 
@@ -64,9 +64,11 @@ Adapters are **siblings**, not layers. React does not wrap Razor. Blazor does no
 | CRUD admin, settings, catalog tables | Dense dashboards, cross-filter state, live tiles | Ecosystem is already JS-first; team owns npm graph | IDE, cockpit, offline desktop |
 | Agent-primary + human-primary **same routes** | Many widgets on one board without full reload | Need mature JS component market (charts, editors) | Latency / windowing beats browser |
 | Journey tests via `WebApplicationFactory` | Hot-reload spec files, server-owned filter state | Partner cannot adopt .NET UI stack | Multi-monitor, OS integration |
-| Forge-class repo journey | dash-spec-class operational boards | Greenfield in Vue/React org | CASCADE-class agent habitat |
+| Forge-class repo journey | dash-spec-class operational boards | Greenfield in Vue/React org | Glass WPF cockpit (CIDE Avalonia EOL) |
 
-**Default for AI Guiders .NET tools:** **MPA** unless the surface is **dashboard-interactive** (→ Blazor) or **IDE-native** (→ Avalonia).
+**CASCADE note:** operator glass = **WPF Glass** + shared `CascadeIDE.GlassCore` (presentation topology, settings peel). Avalonia `CascadeIDE` shell is **EOL** — remains in tree as port SSOT until surfaces adopt; not a second forward adapter (see `cascade-ide/.cdp/plans/glass-cide-port-glance.md`).
+
+**Default for AI Guiders .NET tools:** **MPA** unless the surface is **dashboard-interactive** (→ Blazor) or **IDE-native** (→ WPF Glass).
 
 **Default for foreign ecosystems:** **SPA adapter + shared Core schema** — not a .NET binding.
 
@@ -142,7 +144,7 @@ Islands must still emit ASP/AX nodes for agent parity.
 - New extraction from Forge: horizontal chrome → `UI.*`; domain → Forge plugin.
 - Integration reviews add: **adapter named? Core types? AX ids? anti-pattern scan?**
 - dash-spec may adopt Tokens + ASP profile without adopting HTMX partials.
-- cascade-ide may adopt Tokens + native accessibility profile without web adapters.
+- cascade-ide Glass may adopt Tokens + WPF UIA accessibility profile without web adapters.
 
 ---
 
