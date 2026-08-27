@@ -1,6 +1,6 @@
 using AIGuiders.UI.Core.Editors;
-using AIGuiders.UI.Core.PageChrome;
-using AIGuiders.UI.Tokens;
+using AIGuiders.UI.Core.Kit;
+using AIGuiders.UI.Core.PageChrome;using AIGuiders.UI.Tokens;
 using AIGuiders.UI.Web.HTMX;
 using Xunit;
 
@@ -40,5 +40,17 @@ public sealed class HumanUiCoreTests
         Assert.Contains(".btn-primary", HumanUiTokensCss.Content, StringComparison.Ordinal);
         Assert.Contains(".human-form-input", HumanUiTokensCss.Content, StringComparison.Ordinal);
         Assert.Contains(".human-breadcrumb-nav", HumanUiTokensCss.Content, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void HumanUi_kit_primitives_render_table_and_badge()
+    {
+        var columns = new[] { new HumanUiTableColumn("Name", CellClass: "col-family") };
+        var rows = new[] { new HumanUiTableRow("rule-row", ["cli"]) };
+        var table = HumanUiTable.Render(columns, rows, "catalog-table");
+        Assert.Contains("catalog-table", table, StringComparison.Ordinal);
+        Assert.Contains("badge on", HumanUiBadge.Render("ok", HumanUiBadgeKind.On), StringComparison.Ordinal);
+        Assert.Contains("human-flash-info", HumanUiFlash.Info("saved"), StringComparison.Ordinal);
+        Assert.Equal(nameof(HumanUiTable), HumanUiKit.Table);
     }
 }
