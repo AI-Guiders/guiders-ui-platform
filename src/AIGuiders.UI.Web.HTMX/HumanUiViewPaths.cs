@@ -24,5 +24,7 @@ public static class HumanUiViewPaths
     public static class Editors
     {
         public const string FormatToolbar = "/Pages/Shared/Editors/FormatToolbar";
+        public const string Ccl = "/Pages/Shared/Editors/Ccl";
+        public const string LineGutter = "/Pages/Shared/Editors/LineGutter";
     }
 }

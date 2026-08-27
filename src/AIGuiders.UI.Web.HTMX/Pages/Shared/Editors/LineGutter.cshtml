@@ -1,0 +1,2 @@
+@model EditorLineGutterModel
+<div class="editor-line-gutter" data-forge-editor-line-gutter data-testid="@Model.TestId"@if (!string.IsNullOrWhiteSpace(Model.TargetTextareaId)) { <text> data-forge-editor-target="@Model.TargetTextareaId"</text> } aria-hidden="true"></div>

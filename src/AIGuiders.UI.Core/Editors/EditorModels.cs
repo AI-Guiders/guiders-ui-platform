@@ -28,3 +28,18 @@ public static class EditorFormatToolbarDefaults
         new EditorFormatToolbarButtonModel("num", "Numbered list", "1."),
     };
 }
+
+public sealed record EditorCclModel(
+    string? TargetTextareaId = null,
+    string? TestId = "forge-editor-ccl",
+    string? Placeholder = null);
+
+public sealed record EditorLineGutterModel(
+    string? TargetTextareaId = null,
+    string? TestId = "forge-editor-line-gutter");
+
+public sealed record EditorMarkdownHostModel(
+    string TextareaId,
+    string? ToolbarTestId = null,
+    bool ShowLineGutter = true,
+    bool ShowCcl = true);

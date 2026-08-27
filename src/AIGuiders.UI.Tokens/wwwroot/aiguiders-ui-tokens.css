@@ -97,3 +97,76 @@
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+/* Editor CCL (cockpit command line — always on) */
+.editor-ccl-host {
+  margin-top: 0.35rem;
+  border: 1px solid var(--ui-border-subtle, #232a35);
+  border-radius: var(--ui-radius-sm, 6px);
+  background: var(--ui-surface-2, #1a2029);
+  padding: 0.35rem 0.45rem;
+}
+.editor-ccl-input {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--ui-text, #e8edf5);
+  font-size: 0.84rem;
+  padding: 0.2rem 0.15rem;
+  outline: none;
+}
+.editor-ccl-list {
+  list-style: none;
+  margin: 0.25rem 0 0;
+  padding: 0;
+  max-height: 10rem;
+  overflow: auto;
+  border-top: 1px solid var(--ui-border-subtle, #232a35);
+}
+.editor-ccl-list[hidden] { display: none; }
+.editor-ccl-item {
+  padding: 0.35rem 0.45rem;
+  border-radius: var(--ui-radius-sm, 6px);
+  cursor: pointer;
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+.editor-ccl-item:hover,
+.editor-ccl-item.active {
+  background: color-mix(in srgb, var(--ui-surface-3, #212833) 75%, var(--ui-accent, #4493f8) 25%);
+}
+.editor-ccl-path { font-weight: 650; font-size: 0.84rem; color: var(--ui-link, #58a6ff); }
+.editor-ccl-help { font-size: 0.78rem; color: var(--ui-text-muted, #8b949e); }
+
+/* Line gutter */
+.editor-line-stack {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: stretch;
+}
+.editor-line-gutter {
+  padding: 0.55rem 0.45rem 0.55rem 0.35rem;
+  border: 1px solid var(--ui-border-subtle, #232a35);
+  border-right: none;
+  border-radius: var(--ui-radius-sm, 6px) 0 0 var(--ui-radius-sm, 6px);
+  background: var(--ui-surface-2, #1a2029);
+  color: var(--ui-text-muted, #8b949e);
+  font-family: ui-monospace, monospace;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  text-align: right;
+  user-select: none;
+  min-width: 2.2rem;
+}
+.editor-line-stack .forge-editor-compose textarea.forge-editor,
+.editor-line-stack textarea.forge-editor {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.editor-line-stack .editor-line-gutter + .forge-editor-compose .editor-format-toolbar {
+  border-top-left-radius: 0;
+}
+.editor-source-stack {
+  position: relative;
+}

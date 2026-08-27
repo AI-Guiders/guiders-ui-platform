@@ -1,0 +1,5 @@
+@model EditorCclModel
+<div class="editor-ccl-host" data-forge-editor-ccl data-testid="@Model.TestId"@if (!string.IsNullOrWhiteSpace(Model.TargetTextareaId)) { <text> data-forge-editor-target="@Model.TargetTextareaId"</text> } role="region" aria-label="Editor command line">
+    <input type="text" class="editor-ccl-input" data-forge-editor-ccl-input placeholder="@(Model.Placeholder ?? "Type / for format commands…")" autocomplete="off" spellcheck="false" aria-autocomplete="list" aria-controls="forge-editor-ccl-list" />
+    <ul class="editor-ccl-list" id="forge-editor-ccl-list" data-forge-editor-ccl-list role="listbox" hidden></ul>
+</div>

@@ -16,4 +16,20 @@ public static class HumanUiEditors
         RenderFormatToolbar(new EditorFormatToolbarModel(
             buttons ?? EditorFormatToolbarDefaults.MarkdownGhLike,
             TargetTextareaId: textareaId));
+
+    public static string RenderCcl(EditorCclModel? model = null) =>
+        HumanUiRazorBridgeHolder.RenderPartialStatic(
+            HumanUiViewPaths.Editors.Ccl,
+            model ?? new EditorCclModel());
+
+    public static string RenderCclForTextarea(string textareaId) =>
+        RenderCcl(new EditorCclModel(TargetTextareaId: textareaId));
+
+    public static string RenderLineGutter(EditorLineGutterModel? model = null) =>
+        HumanUiRazorBridgeHolder.RenderPartialStatic(
+            HumanUiViewPaths.Editors.LineGutter,
+            model ?? new EditorLineGutterModel());
+
+    public static string RenderLineGutterForTextarea(string textareaId) =>
+        RenderLineGutter(new EditorLineGutterModel(TargetTextareaId: textareaId));
 }
