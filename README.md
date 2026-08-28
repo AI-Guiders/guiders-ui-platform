@@ -58,3 +58,4 @@ Clone `guiders-ui-platform` as sibling of `agent-forge` under `open/`. `AgentFor
 - [GUIDERS-UI-0006 — Kit primitives extraction](docs/adr/GUIDERS-UI-0006-kit-primitives-extraction.md)
 - [GUIDERS-UI-0007 — FunctionalSpec → IR → PhysicalImplementation](docs/adr/GUIDERS-UI-0007-functional-ir-physical-ui-pipeline.md)
 - [GUIDERS-UI-0008 — InvocableSpec (rest / event / navigate)](docs/adr/GUIDERS-UI-0008-invocable-spec.md)
+- [GUIDERS-UI-0009 — REST leg defers to OpenAPI operationId](docs/adr/GUIDERS-UI-0009-openapi-rest-leg-alignment.md)

@@ -2,7 +2,7 @@
 
 **Status:** accepted (2026-08-28)  
 **Tags:** #guiders #ui #invocable #codegen #rest #event #federation  
-**Related:** GUIDERS-UI-0007 · GUIDERS-UI-0003 · GUIDERS-UI-0005 · GUIDERS-ADR-0006
+**Related:** GUIDERS-UI-0007 · GUIDERS-UI-0009 · GUIDERS-UI-0003 · GUIDERS-UI-0005 · GUIDERS-ADR-0006
 
 ---
 
@@ -19,6 +19,8 @@ XAML-family IR already covers trees, bindings, and styles. Physical profiles des
 What IR does **not** normalize is **what happens on interact**: the same «Submit» on web is `POST /api/...`, on desktop it may be `ICommand` → local handler → optional HTTP later. Today each planet hand-wires this; codegen stops at markup.
 
 **InvocableSpec** names the **domain operation** behind a physical wire (`onClick`, `(click)`, `hx-post`, `Command=`) so one functional handler can drive generated clients and commands across planets.
+
+For `route_type=rest`, path/method/schemas **defer to planet OpenAPI** — see **[GUIDERS-UI-0009](GUIDERS-UI-0009-openapi-rest-leg-alignment.md)**.
 
 ### Out of scope for InvocableSpec
 
@@ -55,8 +57,8 @@ Each interactable IR node may reference one or more named handlers (e.g. `ClickH
 |-------|------|
 | `handler_id` | Stable id within functional component (links AX `commandHints` by reference) |
 | `route_type` | See §3 |
-| `route` | Target: URL template, event name, or navigation path |
-| `method` | HTTP verb when `route_type=rest` |
+| `OperationId` | When `rest` — OpenAPI `operationId` ([0009](GUIDERS-UI-0009-openapi-rest-leg-alignment.md)) |
+| `route` | For `event` / `navigate`; **not** duplicated for `rest` |
 | `params` | Bound names / schema refs (from IR bindings) |
 | `authz` | Optional policy ref (required before public codegen) |
 
@@ -94,11 +96,7 @@ Handler **wiring** on a physical node (attached property — same ergonomics as 
         inv:Handler.Click="ClickHandler" />
 ```
 
-For `route_type=rest`, `OperationId` resolves against planet **OpenAPI** (`operationId`); path/method/params come from the spec — InvocableSpec does not duplicate them.
-
 #### C# projection (optional / generated)
-
-Equivalent for non-XAML edit surfaces or Roslyn analyzers:
 
 ```csharp
 [Invocable("ClickHandler", OperationId = "CatalogRefresh")]
@@ -108,24 +106,26 @@ public partial class HomeCatalogEmptyState { }
 
 Markup and C# projections **must lower to the same IR**; compiler rejects drift.
 
+### 3. `route_type` (v1 — three values only)
+
 | `route_type` | Runtime class | Physical lowering examples |
 |--------------|---------------|----------------------------|
-| **`rest`** | Web / HTTP-capable | `hx-post`, `fetch()`, Angular `HttpClient`, generated API client |
+| **`rest`** | Web / HTTP-capable | `hx-post`, `fetch()`, Angular `HttpClient` — resolves via [0009](GUIDERS-UI-0009-openapi-rest-leg-alignment.md) |
 | **`event`** | Desktop / in-process | WPF `ICommand`, Avalonia `ReactiveCommand`, local event bus, view-model method |
 | **`navigate`** | Any | Route change without mutation — `href`, `Router.navigate`, `NavigationService` |
 
 **Profile rule:** a planet picks a **default** `route_type` for codegen (Forge → `rest`; Glass → `event`) but the **same `handler_id`** may declare **profile overrides** when one functional screen ships on multiple runtime classes.
 
-### 3. `route_type` (v1 — three values only)
+### 4. Codegen consequence
 
 With FunctionalSpec + IR + Physical profile + InvocableSpec, the platform can generate:
 
 | Artifact | Source |
 |----------|--------|
 | Markup / components | IR + Physical profile |
-| HTTP client / HTMX attrs | InvocableSpec `rest` |
+| HTTP client / HTMX attrs | InvocableSpec `rest` + planet OpenAPI ([0009](GUIDERS-UI-0009-openapi-rest-leg-alignment.md)) |
 | Commands / event subscriptions | InvocableSpec `event` |
-| Journey / contract test stubs | `handler_id` + `route` |
+| Journey / contract test stubs | `handler_id` + `operationId` / `route` |
 | Agent AX hints (optional) | **Reference** `handler_id` — not duplicate route tables |
 
 **Kill test (extends 0007):** one `handler_id` → generated REST binding **and** generated local event binding without copy-pasting route strings in product code.
@@ -136,7 +136,8 @@ Same discipline as 0007:
 
 - Physical wire without `InvocableSpec` on a **catalog interactable** → **warning** (v1) → **error** (v2).
 - `route_type` not allowed for active profile → compile error.
-- `rest` route without `method` → compile error.
+- `rest` with inline `Route`/`Method` when planet OpenAPI is configured → compile error ([0009](GUIDERS-UI-0009-openapi-rest-leg-alignment.md)).
+- `OperationId` not found in planet OpenAPI → compile error.
 
 ### 6. Relationship to GUIDERS-UI-0007
 
@@ -156,17 +157,7 @@ InvocableSpec does **not** replace REST API design or domain services — it **l
 - Generating MCP servers or tool manifests from InvocableSpec.
 - Encoding CDP / federation intent grammar in UI SSOT.
 - 100% UI codegen for rich islands (editors, diff, charts) — escape hatch remains.
-- Replacing OpenAPI as API SSOT — for `rest`, link by **`operationId`**; path/method/schemas resolve from planet OpenAPI.
-
-### OpenAPI alignment (`route_type=rest`)
-
-| OpenAPI | InvocableSpec |
-|---------|---------------|
-| `operationId` | `handler_id` / `OperationId` on `inv:Handler` |
-| `paths` + method | resolved at codegen — not duplicated in markup |
-| `parameters`, `requestBody` | bound via IR `{Binding}` → OpenAPI param names |
-| `security` | `authz` ref |
-| `x-aiguiders-invocable` (optional) | desktop `event` override on same operation |
+- Duplicating OpenAPI in markup — [0009](GUIDERS-UI-0009-openapi-rest-leg-alignment.md).
 
 ---
 
@@ -183,9 +174,9 @@ InvocableSpec does **not** replace REST API design or domain services — it **l
 1. XAML `inv:` markup extension + `HandlerRegistry` prototype (WPF or Avalonia spike)
 2. `InvocableRoute` + C# projection attribute (lowering target for analyzer)
 3. One catalog component with `rest` (`operationId`) + `event` profile override
-3. Codegen spike: HTMX attrs from InvocableSpec (Forge)
-4. Codegen spike: `ICommand` stub from same spec (Glass or Avalonia)
-5. CI: handler id stable across generated artifacts
+4. Codegen spike: HTMX attrs from InvocableSpec + OpenAPI ([0009](GUIDERS-UI-0009-openapi-rest-leg-alignment.md))
+5. Codegen spike: `ICommand` stub from same spec (Glass or Avalonia)
+6. CI: `OperationId` resolve + handler id stable across artifacts
 
 ---
 
@@ -193,6 +184,6 @@ InvocableSpec does **not** replace REST API design or domain services — it **l
 
 - [ ] `handler_id` named and stable
 - [ ] `route_type` matches planet profile or explicit override documented
-- [ ] `rest` routes have `method` + authz or `#TODO-authz` with issue link
+- [ ] `rest` uses `OperationId` per [0009](GUIDERS-UI-0009-openapi-rest-leg-alignment.md)
 - [ ] No MCP / intent routes in InvocableSpec — use platform layers instead
 - [ ] Agent hints, if any, reference `handler_id` only
