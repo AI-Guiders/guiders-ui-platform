@@ -12,7 +12,8 @@ public sealed record HumanUiInputSpec(
     string? InputMode = null,
     bool Required = false,
     string? Form = null,
-    bool Checked = false);
+    bool Checked = false,
+    int? MaxLength = null);
 
 public static partial class HumanUiHtml
 {
@@ -39,6 +40,8 @@ public static partial class HumanUiHtml
         AppendAttr(sb, "autocomplete", spec.Autocomplete);
         AppendAttr(sb, "inputmode", spec.InputMode);
         AppendAttr(sb, "form", spec.Form);
+        if (spec.MaxLength is > 0)
+            sb.Append(" maxlength=\"").Append(spec.MaxLength.Value).Append('"');
         if (spec.Required)
             sb.Append(" required");
         if (spec.Checked)
@@ -68,6 +71,19 @@ public static partial class HumanUiHtml
         foreach (var option in options)
             sb.Append(option);
         sb.Append("</select>");
+        return sb.ToString();
+    }
+
+    public static string Form(string method, string action, string? cssClass, params ReadOnlySpan<string> inner)
+    {
+        var sb = new StringBuilder("<form");
+        AppendAttr(sb, "method", method);
+        AppendAttr(sb, "action", action);
+        AppendAttr(sb, "class", cssClass);
+        sb.Append('>');
+        foreach (var part in inner)
+            sb.Append(part);
+        sb.Append("</form>");
         return sb.ToString();
     }
 

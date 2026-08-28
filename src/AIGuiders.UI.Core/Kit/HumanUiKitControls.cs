@@ -27,6 +27,53 @@ public static class HumanUiKitControls
             CheckboxRow("scope-write", "scopes", "write", "write", writeChecked),
             CheckboxRow("scope-accept", "scopes", "accept_merge", "accept_merge", acceptMergeChecked));
 
+    public static string TextField(
+        string id,
+        string name,
+        string label,
+        string? placeholder = null,
+        bool required = false,
+        int? maxLength = null) =>
+        HumanUiHtml.Fragment(
+            HumanUiHtml.Div(
+                "human-form-field",
+                HumanUiHtml.LabelWithClass(id, "human-form-label", HumanUiHtml.Text(label)),
+                HumanUiHtml.Input(new HumanUiInputSpec(
+                    name,
+                    Id: id,
+                    Placeholder: placeholder,
+                    Required: required,
+                    MaxLength: maxLength))));
+
+    public static string RadioRow(
+        string id,
+        string name,
+        string value,
+        string label,
+        string? hint,
+        bool selected = false) =>
+        HumanUiHtml.Tag(
+            "label",
+            "radio-row",
+            [new HumanUiHtml.HumanUiHtmlAttr("for", id)],
+            [
+                HumanUiHtml.Input(new HumanUiInputSpec(name, Type: "radio", Id: id, Value: value, Checked: selected)),
+                HumanUiHtml.Span("radio-label", HumanUiHtml.Text(label)),
+                string.IsNullOrWhiteSpace(hint)
+                    ? ""
+                    : HumanUiHtml.Span("radio-hint", HumanUiHtml.Text(hint)),
+            ]);
+
+    public static string PrimarySubmit(string label = "Save") =>
+        HumanUiHtml.Tag(
+            "div",
+            "human-form-actions page-actions",
+            HumanUiHtml.Tag(
+                "button",
+                "btn btn-primary",
+                [new HumanUiHtml.HumanUiHtmlAttr("type", "submit")],
+                [HumanUiHtml.Text(label)]));
+
     public static string TokenRevealPanel(string plainToken, string? tokenName = null)
     {
         var nameLine = string.IsNullOrWhiteSpace(tokenName)
