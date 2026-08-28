@@ -6,6 +6,7 @@ namespace AIGuiders.UI.Core.Kit;
 public static class HumanUiKitControls
 {
     public const string FormInputClass = "human-form-input";
+    public const string FormSelectClass = "human-form-select";
     public const string FormCheckClass = "human-form-check";
     public const string FormCheckGroupClass = "human-form-check-group";
 
@@ -67,6 +68,58 @@ public static class HumanUiKitControls
         string? autocomplete = "off") =>
         TextField(id, name, label, required: required, type: "password", autocomplete: autocomplete);
 
+    public static string CodeField(string id, string name, string label, bool required = true) =>
+        TextField(
+            id,
+            name,
+            label,
+            required: required,
+            autocomplete: "one-time-code",
+            inputMode: "numeric");
+
+    public static string TextFieldWithHint(
+        string id,
+        string name,
+        string label,
+        string hint,
+        string? placeholder = null,
+        bool required = false,
+        string? value = null) =>
+        HumanUiHtml.Div(
+            "human-form-field",
+            HumanUiHtml.LabelWithClass(id, "human-form-label", HumanUiHtml.Text(label)),
+            HumanUiHtml.Input(new HumanUiInputSpec(
+                name,
+                Id: id,
+                Value: value,
+                Placeholder: placeholder,
+                Required: required,
+                CssClass: FormInputClass)),
+            HumanUiHtml.P("human-form-hint", HumanUiHtml.Text(hint)));
+
+    public static string SelectField(
+        string id,
+        string name,
+        string label,
+        IReadOnlyList<HumanUiSelectOption> options,
+        string? hint = null,
+        bool required = false) =>
+        HumanUiHtml.Div(
+            "human-form-field",
+            HumanUiHtml.LabelWithClass(id, "human-form-label", HumanUiHtml.Text(label)),
+            string.IsNullOrWhiteSpace(hint) ? "" : HumanUiHtml.P("human-form-hint", HumanUiHtml.Text(hint)),
+            HumanUiSelect.Render(new HumanUiSelectSpec(
+                id,
+                name,
+                options,
+                CssClass: FormSelectClass,
+                Required: required)));
+
+    public static string ToggleField(string id, string name, string label, bool isChecked) =>
+        HumanUiHtml.Div(
+            "human-form-field",
+            CheckboxRow(id, name, label, "true", isChecked));
+
     public static string HiddenField(string name, string value) =>
         HumanUiHtml.Input(new HumanUiInputSpec(name, Type: "hidden", Value: value));
 
@@ -79,21 +132,27 @@ public static class HumanUiKitControls
                 ..inner,
             ]);
 
-    public static string DangerSubmit(string label) =>
-        SubmitActions(label, "btn btn-danger");
+    public static string DangerSubmit(string label, string? testId = null) =>
+        SubmitActions(label, "btn btn-danger", testId);
 
-    private static string SubmitActions(string label, string buttonClass) =>
-        HumanUiHtml.Tag(
+    private static string SubmitActions(string label, string buttonClass, string? testId = null)
+    {
+        var attrs = new List<HumanUiHtml.HumanUiHtmlAttr> { new("type", "submit") };
+        if (!string.IsNullOrWhiteSpace(testId))
+            attrs.Add(HumanUiHtml.TestId(testId));
+
+        return HumanUiHtml.Tag(
             "div",
             "human-form-actions page-actions",
             HumanUiHtml.Tag(
                 "button",
                 buttonClass,
-                [new HumanUiHtml.HumanUiHtmlAttr("type", "submit")],
+                attrs.ToArray(),
                 [HumanUiHtml.Text(label)]));
+    }
 
-    public static string PrimarySubmit(string label = "Save") =>
-        SubmitActions(label, "btn btn-primary");
+    public static string PrimarySubmit(string label = "Save", string? testId = null) =>
+        SubmitActions(label, "btn btn-primary", testId);
 
     public static string RadioRow(
         string id,
