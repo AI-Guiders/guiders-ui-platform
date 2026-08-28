@@ -38,18 +38,62 @@ public static class HumanUiKitControls
         string label,
         string? placeholder = null,
         bool required = false,
-        int? maxLength = null) =>
+        int? maxLength = null,
+        string type = "text",
+        string? value = null,
+        string? autocomplete = null,
+        string? inputMode = null) =>
         HumanUiHtml.Fragment(
             HumanUiHtml.Div(
                 "human-form-field",
                 HumanUiHtml.LabelWithClass(id, "human-form-label", HumanUiHtml.Text(label)),
                 HumanUiHtml.Input(new HumanUiInputSpec(
                     name,
+                    Type: type,
                     Id: id,
+                    Value: value,
                     Placeholder: placeholder,
+                    Autocomplete: autocomplete,
+                    InputMode: inputMode,
                     Required: required,
                     MaxLength: maxLength,
                     CssClass: FormInputClass))));
+
+    public static string PasswordField(
+        string id,
+        string name,
+        string label,
+        bool required = true,
+        string? autocomplete = "off") =>
+        TextField(id, name, label, required: required, type: "password", autocomplete: autocomplete);
+
+    public static string HiddenField(string name, string value) =>
+        HumanUiHtml.Input(new HumanUiInputSpec(name, Type: "hidden", Value: value));
+
+    public static string Fieldset(string legend, params ReadOnlySpan<string> inner) =>
+        HumanUiHtml.Tag(
+            "fieldset",
+            "human-form-fieldset",
+            [
+                HumanUiHtml.Tag("legend", "human-form-legend", HumanUiHtml.Text(legend)),
+                ..inner,
+            ]);
+
+    public static string DangerSubmit(string label) =>
+        SubmitActions(label, "btn btn-danger");
+
+    private static string SubmitActions(string label, string buttonClass) =>
+        HumanUiHtml.Tag(
+            "div",
+            "human-form-actions page-actions",
+            HumanUiHtml.Tag(
+                "button",
+                buttonClass,
+                [new HumanUiHtml.HumanUiHtmlAttr("type", "submit")],
+                [HumanUiHtml.Text(label)]));
+
+    public static string PrimarySubmit(string label = "Save") =>
+        SubmitActions(label, "btn btn-primary");
 
     public static string RadioRow(
         string id,
@@ -69,16 +113,6 @@ public static class HumanUiKitControls
                     ? ""
                     : HumanUiHtml.Span("radio-hint", HumanUiHtml.Text(hint)),
             ]);
-
-    public static string PrimarySubmit(string label = "Save") =>
-        HumanUiHtml.Tag(
-            "div",
-            "human-form-actions page-actions",
-            HumanUiHtml.Tag(
-                "button",
-                "btn btn-primary",
-                [new HumanUiHtml.HumanUiHtmlAttr("type", "submit")],
-                [HumanUiHtml.Text(label)]));
 
     public static string TokenRevealPanel(string plainToken, string? tokenName = null)
     {

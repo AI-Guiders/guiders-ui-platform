@@ -48,6 +48,10 @@ public sealed class HumanUiCoreTests
         var field = HumanUiKitControls.TextField("token-name", "name", "Name");
         Assert.Contains("class=\"human-form-input\"", field, StringComparison.Ordinal);
 
+        var password = HumanUiKitControls.PasswordField("token", "token", "API token");
+        Assert.Contains("type=\"password\"", password, StringComparison.Ordinal);
+        Assert.Contains("class=\"human-form-input\"", password, StringComparison.Ordinal);
+
         var scopes = HumanUiKitControls.ScopeCheckboxGroup();
         Assert.Contains("human-form-check-group", scopes, StringComparison.Ordinal);
         Assert.Contains("human-form-check", scopes, StringComparison.Ordinal);
