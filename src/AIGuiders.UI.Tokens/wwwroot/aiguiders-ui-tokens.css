@@ -307,6 +307,11 @@
   height: 1rem;
   accent-color: var(--ui-accent, #4493f8);
 }
+.human-form-check-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.25rem;
+}
 .human-form-actions {
   margin-top: 0.25rem;
 }

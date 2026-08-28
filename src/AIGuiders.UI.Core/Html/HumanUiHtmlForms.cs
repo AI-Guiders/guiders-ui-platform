@@ -13,7 +13,8 @@ public sealed record HumanUiInputSpec(
     bool Required = false,
     string? Form = null,
     bool Checked = false,
-    int? MaxLength = null);
+    int? MaxLength = null,
+    string? CssClass = null);
 
 public static partial class HumanUiHtml
 {
@@ -40,6 +41,7 @@ public static partial class HumanUiHtml
         AppendAttr(sb, "autocomplete", spec.Autocomplete);
         AppendAttr(sb, "inputmode", spec.InputMode);
         AppendAttr(sb, "form", spec.Form);
+        AppendAttr(sb, "class", spec.CssClass);
         if (spec.MaxLength is > 0)
             sb.Append(" maxlength=\"").Append(spec.MaxLength.Value).Append('"');
         if (spec.Required)

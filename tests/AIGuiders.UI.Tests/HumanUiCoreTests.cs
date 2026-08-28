@@ -43,6 +43,17 @@ public sealed class HumanUiCoreTests
     }
 
     [Fact]
+    public void HumanUi_kit_controls_emit_form_token_classes()
+    {
+        var field = HumanUiKitControls.TextField("token-name", "name", "Name");
+        Assert.Contains("class=\"human-form-input\"", field, StringComparison.Ordinal);
+
+        var scopes = HumanUiKitControls.ScopeCheckboxGroup();
+        Assert.Contains("human-form-check-group", scopes, StringComparison.Ordinal);
+        Assert.Contains("human-form-check", scopes, StringComparison.Ordinal);
+    }
+
+    [Fact]
     public void HumanUi_kit_primitives_render_table_and_badge()
     {
         var columns = new[] { new HumanUiTableColumn("Name", CellClass: "col-family") };

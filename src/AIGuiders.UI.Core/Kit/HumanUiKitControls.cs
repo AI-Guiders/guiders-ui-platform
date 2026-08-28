@@ -5,6 +5,10 @@ namespace AIGuiders.UI.Core.Kit;
 /// <summary>Reusable kit form controls (server-rendered).</summary>
 public static class HumanUiKitControls
 {
+    public const string FormInputClass = "human-form-input";
+    public const string FormCheckClass = "human-form-check";
+    public const string FormCheckGroupClass = "human-form-check-group";
+
     public static string CheckboxRow(
         string id,
         string name,
@@ -13,16 +17,17 @@ public static class HumanUiKitControls
         bool isChecked = false) =>
         HumanUiHtml.LabelWithClass(
             id,
-            "radio-row",
+            FormCheckClass,
             HumanUiHtml.Input(
                 new HumanUiInputSpec(name, Type: "checkbox", Id: id, Value: value, Checked: isChecked)),
-            HumanUiHtml.Span("radio-label", HumanUiHtml.Text(label)));
+            HumanUiHtml.Text(label));
 
     public static string ScopeCheckboxGroup(
         bool readChecked = true,
         bool writeChecked = true,
         bool acceptMergeChecked = true) =>
-        HumanUiHtml.Fragment(
+        HumanUiHtml.Div(
+            FormCheckGroupClass,
             CheckboxRow("scope-read", "scopes", "read", "read", readChecked),
             CheckboxRow("scope-write", "scopes", "write", "write", writeChecked),
             CheckboxRow("scope-accept", "scopes", "accept_merge", "accept_merge", acceptMergeChecked));
@@ -43,7 +48,8 @@ public static class HumanUiKitControls
                     Id: id,
                     Placeholder: placeholder,
                     Required: required,
-                    MaxLength: maxLength))));
+                    MaxLength: maxLength,
+                    CssClass: FormInputClass))));
 
     public static string RadioRow(
         string id,
