@@ -60,9 +60,53 @@ Each interactable IR node may reference one or more named handlers (e.g. `ClickH
 | `params` | Bound names / schema refs (from IR bindings) |
 | `authz` | Optional policy ref (required before public codegen) |
 
-Authoring may be **attributes**, **IR YAML/JSON**, or **C# records** — no mandatory mini-DSL.
+Authoring surfaces (preference order):
 
-### 3. `route_type` (v1 — three values only)
+1. **XAML / AXAML markup extensions** (primary for 0007 IR transport) — custom `xmlns`, attached properties, handler registry in resource dictionary.
+2. **C# projection** — generated from markup or hand-written for Razor/HTMX planets where XAML is not the edit surface.
+3. **IR JSON/YAML** — interchange / CI diff; not a second human SSOT.
+
+No mandatory mini-DSL beyond XML + existing binding syntax.
+
+#### XAML authoring (canonical sketch)
+
+Handler **definitions** (resource dictionary or functional root):
+
+```xml
+xmlns:ui="https://aiguiders.org/ui"
+xmlns:inv="https://aiguiders.org/ui/invocable"
+
+<inv:HandlerRegistry>
+  <inv:Handler Id="ClickHandler"
+               RouteType="rest"
+               OperationId="CatalogRefresh" />
+  <inv:Handler Id="ClickHandler"
+               RouteType="event"
+               Route="CatalogRefresh"
+               Profile="wpf-glass" />
+</inv:HandlerRegistry>
+```
+
+Handler **wiring** on a physical node (attached property — same ergonomics as `{Binding}`):
+
+```xml
+<Button Content="Refresh"
+        inv:Handler.Click="ClickHandler" />
+```
+
+For `route_type=rest`, `OperationId` resolves against planet **OpenAPI** (`operationId`); path/method/params come from the spec — InvocableSpec does not duplicate them.
+
+#### C# projection (optional / generated)
+
+Equivalent for non-XAML edit surfaces or Roslyn analyzers:
+
+```csharp
+[Invocable("ClickHandler", OperationId = "CatalogRefresh")]
+[Invocable("ClickHandler", RouteType = InvocableRoute.Event, Route = "CatalogRefresh", Profile = "wpf-glass")]
+public partial class HomeCatalogEmptyState { }
+```
+
+Markup and C# projections **must lower to the same IR**; compiler rejects drift.
 
 | `route_type` | Runtime class | Physical lowering examples |
 |--------------|---------------|----------------------------|
@@ -72,21 +116,7 @@ Authoring may be **attributes**, **IR YAML/JSON**, or **C# records** — no mand
 
 **Profile rule:** a planet picks a **default** `route_type` for codegen (Forge → `rest`; Glass → `event`) but the **same `handler_id`** may declare **profile overrides** when one functional screen ships on multiple runtime classes.
 
-Example (attribute sketch):
-
-```csharp
-[Invocable("ClickHandler",
-    RouteType = InvocableRoute.Rest,
-    Method = "POST",
-    Route = "/forge/catalog/refresh")]
-[Invocable("ClickHandler",
-    RouteType = InvocableRoute.Event,
-    Route = "CatalogRefresh",
-    Profile = "wpf-glass")]
-public partial class HomeCatalogEmptyState { }
-```
-
-### 4. Codegen consequence
+### 3. `route_type` (v1 — three values only)
 
 With FunctionalSpec + IR + Physical profile + InvocableSpec, the platform can generate:
 
@@ -126,7 +156,17 @@ InvocableSpec does **not** replace REST API design or domain services — it **l
 - Generating MCP servers or tool manifests from InvocableSpec.
 - Encoding CDP / federation intent grammar in UI SSOT.
 - 100% UI codegen for rich islands (editors, diff, charts) — escape hatch remains.
-- Replacing OpenAPI as API SSOT — OpenAPI may **inform** `rest` routes; InvocableSpec **attaches** them to UI nodes.
+- Replacing OpenAPI as API SSOT — for `rest`, link by **`operationId`**; path/method/schemas resolve from planet OpenAPI.
+
+### OpenAPI alignment (`route_type=rest`)
+
+| OpenAPI | InvocableSpec |
+|---------|---------------|
+| `operationId` | `handler_id` / `OperationId` on `inv:Handler` |
+| `paths` + method | resolved at codegen — not duplicated in markup |
+| `parameters`, `requestBody` | bound via IR `{Binding}` → OpenAPI param names |
+| `security` | `authz` ref |
+| `x-aiguiders-invocable` (optional) | desktop `event` override on same operation |
 
 ---
 
@@ -140,8 +180,9 @@ InvocableSpec does **not** replace REST API design or domain services — it **l
 
 ## vNext (ordered)
 
-1. `InvocableRoute` enum + attribute prototype in `AIGuiders.UI.Core`
-2. One catalog component (`EmptyState.HomeCatalog` or `HumanUiPanel` action) with `rest` + `event` overrides
+1. XAML `inv:` markup extension + `HandlerRegistry` prototype (WPF or Avalonia spike)
+2. `InvocableRoute` + C# projection attribute (lowering target for analyzer)
+3. One catalog component with `rest` (`operationId`) + `event` profile override
 3. Codegen spike: HTMX attrs from InvocableSpec (Forge)
 4. Codegen spike: `ICommand` stub from same spec (Glass or Avalonia)
 5. CI: handler id stable across generated artifacts
