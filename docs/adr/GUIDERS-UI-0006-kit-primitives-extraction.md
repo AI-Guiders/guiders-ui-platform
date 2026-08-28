@@ -1,7 +1,7 @@
 # GUIDERS-UI-0006: Kit primitives extraction (Table, List, Badge, Flash, Panel)
 
 **Status:** accepted (2026-08-28)  
-**Related:** GUIDERS-UI-0002 · GUIDERS-UI-0005 · FORGE-ADR-0068 · FORGE-ADR-0069
+**Related:** GUIDERS-UI-0002 · GUIDERS-UI-0005 · GUIDERS-UI-0007 · FORGE-ADR-0068 · FORGE-ADR-0069
 
 ## Context
 
