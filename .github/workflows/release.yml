@@ -31,19 +31,7 @@ jobs:
         with:
           user: LonelySoul
 
-      - name: Push nupkg
-        shell: bash
-        run: |
-          set -euo pipefail
-          key="${{ steps.nuget_login.outputs.NUGET_API_KEY }}"
-          src="https://api.nuget.org/v3/index.json"
-          shopt -s nullglob
-          files=(artifacts/AIGuiders.UI.*.nupkg)
-          if [ ${#files[@]} -eq 0 ]; then
-            echo "No AIGuiders.UI.*.nupkg under artifacts/"
-            exit 1
-          fi
-          for f in "${files[@]}"; do
-            echo "push $f"
-            dotnet nuget push "$f" --api-key "$key" --source "$src" --skip-duplicate
-          done
+      - name: Push nupkg / snupkg
+        env:
+          NUGET_API_KEY: ${{ steps.nuget_login.outputs.NUGET_API_KEY }}
+        run: bash scripts/nuget/push-artifacts.sh 'artifacts/AIGuiders.UI.*.nupkg'
