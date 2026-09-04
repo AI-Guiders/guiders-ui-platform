@@ -346,3 +346,86 @@
   font-size: 0.8125rem;
   color: var(--ui-text-muted, #8b949e);
 }
+
+/* GitHub-style settings sections (L0 kit) */
+.settings-section {
+  margin: 0;
+}
+.settings-section-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  padding: 1rem 1.1rem 0.65rem;
+  border-bottom: 1px solid var(--ui-border-subtle, #21262d);
+}
+.settings-section-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+.settings-section-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 650;
+  color: var(--ui-text, #e8edf5);
+}
+.settings-section-subtitle {
+  margin: 0.25rem 0 0;
+  font-size: 0.8125rem;
+  color: var(--ui-text-muted, #8b949e);
+  line-height: 1.4;
+}
+.settings-section-body {
+  padding: 0;
+}
+.settings-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem 1rem;
+  padding: 0.85rem 1.1rem;
+  border-bottom: 1px solid var(--ui-border-subtle, #21262d);
+}
+.settings-row:last-child {
+  border-bottom: 0;
+}
+.settings-row-main {
+  min-width: 0;
+  flex: 1 1 12rem;
+}
+.settings-row-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ui-text, #e8edf5);
+}
+.settings-row-meta {
+  margin-top: 0.2rem;
+  font-size: 0.8125rem;
+  color: var(--ui-text-muted, #8b949e);
+  line-height: 1.4;
+}
+.settings-row-meta-sep {
+  opacity: 0.65;
+}
+.settings-row-scopes {
+  font-size: 0.78rem;
+}
+.settings-row-action,
+.settings-row-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
+  flex-shrink: 0;
+}
+.settings-section-footnote {
+  margin: 0.75rem 0 0;
+  font-size: 0.8125rem;
+  color: var(--ui-text-muted, #8b949e);
+  line-height: 1.45;
+  max-width: 42rem;
+}

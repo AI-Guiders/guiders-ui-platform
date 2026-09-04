@@ -70,4 +70,23 @@ public sealed class HumanUiCoreTests
         Assert.Contains("human-flash-info", HumanUiFlash.Info("saved"), StringComparison.Ordinal);
         Assert.Equal(nameof(HumanUiTable), HumanUiKit.Table);
     }
+
+    [Fact]
+    public void HumanUi_settings_section_and_row_emit_gh_layout_classes()
+    {
+        var section = HumanUiSettingsSection.Render(
+            "Personal access tokens",
+            "Manage API tokens.",
+            headerActionHtml: null,
+            badgeHtml: null,
+            HumanUiSettingsRow.Render("cli-laptop", "read,write", "<button>Delete</button>"));
+        Assert.Contains("settings-section", section, StringComparison.Ordinal);
+        Assert.Contains("settings-section-title", section, StringComparison.Ordinal);
+        Assert.Contains("settings-row", section, StringComparison.Ordinal);
+        Assert.Contains("settings-row-title", section, StringComparison.Ordinal);
+        Assert.Contains("cli-laptop", section, StringComparison.Ordinal);
+
+        Assert.Contains(".settings-section", HumanUiTokensCss.Content, StringComparison.Ordinal);
+        Assert.Contains(".settings-row", HumanUiTokensCss.Content, StringComparison.Ordinal);
+    }
 }
