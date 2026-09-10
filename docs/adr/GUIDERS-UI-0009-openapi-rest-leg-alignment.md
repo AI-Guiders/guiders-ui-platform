@@ -1,6 +1,6 @@
 # GUIDERS-UI-0009: REST leg defers to OpenAPI `operationId`
 
-**Status:** accepted (2026-08-28)  
+**Status:** Accepted (2026-08-28)  
 **Tags:** #guiders #ui #openapi #invocable #rest #codegen  
 **Related:** GUIDERS-UI-0008 · GUIDERS-UI-0007 · GUIDERS-UI-0005
 

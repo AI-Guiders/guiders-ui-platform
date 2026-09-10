@@ -1,6 +1,6 @@
 # GUIDERS-UI-0003: Agent AX and human a11y — dual accessibility layer
 
-**Status:** accepted (2026-08-25)  
+**Status:** Accepted (2026-08-25)  
 **Tags:** #guiders #ui #a11y #ax #agent #human #open  
 **Related:** GUIDERS-UI-0001 · GUIDERS-UI-0002 · GUIDERS-ADR-0005 · FORGE-ADR-0049
 

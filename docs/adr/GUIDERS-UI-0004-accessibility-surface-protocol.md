@@ -1,6 +1,6 @@
 # GUIDERS-UI-0004: Accessibility Surface Protocol (ASP) — platform-neutral a11y charter
 
-**Status:** accepted (draft charter — 2026-08-25)  
+**Status:** Accepted (draft charter — 2026-08-25)  
 **Tags:** #guiders #ui #a11y #ax #standard #federation #open  
 **Related:** GUIDERS-UI-0001 · GUIDERS-UI-0003 · GUIDERS-ADR-0006 · GUIDERS-ADR-0007 · ANUI-ADR-0004 (evolution)
 

@@ -1,6 +1,6 @@
 # GUIDERS-UI-0005: UI adapter strategy — MPA, Blazor, SPA, native
 
-**Status:** accepted (2026-08-27)  
+**Status:** Accepted (2026-08-27)  
 **Tags:** #guiders #ui #adapter #mpa #blazor #spa #native #federation #agent #human  
 **Related:** GUIDERS-UI-0001 · GUIDERS-UI-0003 · GUIDERS-UI-0004 · GUIDERS-ADR-0005 · GUIDERS-ADR-0006 · FORGE-ADR-0049 · FORGE-ADR-0059
 

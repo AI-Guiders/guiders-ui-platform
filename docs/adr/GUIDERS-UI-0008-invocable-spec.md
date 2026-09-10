@@ -1,6 +1,6 @@
 # GUIDERS-UI-0008: InvocableSpec — action contract behind Physical UI
 
-**Status:** accepted (2026-08-28)  
+**Status:** Accepted (2026-08-28)  
 **Tags:** #guiders #ui #invocable #codegen #rest #event #federation  
 **Related:** GUIDERS-UI-0007 · GUIDERS-UI-0009 · GUIDERS-UI-0003 · GUIDERS-UI-0005 · GUIDERS-ADR-0006
 

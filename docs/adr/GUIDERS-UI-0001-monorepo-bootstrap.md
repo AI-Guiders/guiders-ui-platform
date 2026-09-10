@@ -1,6 +1,6 @@
 # GUIDERS-UI-0001: Monorepo bootstrap
 
-**Status:** accepted (2026-08-25)
+**Status:** Accepted (2026-08-25)
 
 ## Context
 

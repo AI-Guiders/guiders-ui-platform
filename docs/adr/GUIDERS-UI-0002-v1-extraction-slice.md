@@ -1,6 +1,6 @@
 # GUIDERS-UI-0002: v1 extraction slice
 
-**Status:** accepted (2026-08-25)  
+**Status:** Accepted (2026-08-25)  
 **Related:** FORGE-ADR-0059 · GUIDERS-ADR-0005
 
 ## v1 scope (shipped in 0.1.0)

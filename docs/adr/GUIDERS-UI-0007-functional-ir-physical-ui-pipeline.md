@@ -1,6 +1,6 @@
 # GUIDERS-UI-0007: FunctionalSpec → IR (XAML family) → PhysicalImplementation
 
-**Status:** accepted (2026-08-28)  
+**Status:** Accepted (2026-08-28)  
 **Tags:** #guiders #ui #ir #xaml #functional #physical #cfihos #federation #compiler  
 **Related:** GUIDERS-UI-0005 · GUIDERS-UI-0006 · GUIDERS-UI-0008 · GUIDERS-ADR-0006 · [ui-ir-platform research](https://gitlab.wissance.com/wissance/ai/agent-notes/-/blob/main/knowledge/work/projects/door-to-singularity/guiders-ui-platform/research/note-ui-ir-platform-research-v1.md)
 
